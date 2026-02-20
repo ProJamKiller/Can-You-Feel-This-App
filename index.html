@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+
+  <title>Can You Feel This? — Fletcher Christian</title>
+  <meta name="description" content="Can You Feel This? by Fletcher Christian. Dropping everywhere March 6." />
+  <meta name="theme-color" content="#07080b" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://bafybeiadofj7nov5h427pnvgilj5kdtq5wvpu65dnr4ba3pluxrmwqfnie.ipfs.dweb.link?filename=Can%20You%20Feel%20This%3F%20Main%20Pic.jpeg" type="image/jpeg" />
+  <link rel="apple-touch-icon" href="https://bafybeiadofj7nov5h427pnvgilj5kdtq5wvpu65dnr4ba3pluxrmwqfnie.ipfs.dweb.link?filename=Can%20You%20Feel%20This%3F%20Main%20Pic.jpeg" />
+
+  <!-- Social share -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Can You Feel This? — Fletcher Christian" />
+  <meta property="og:description" content="Dropping everywhere March 6." />
+  <meta property="og:image" content="https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg" />
+  <meta property="og:image:alt" content="Can You Feel This? — Fletcher Christian" />
+  <meta property="og:site_name" content="Fletcher Christian" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Can You Feel This? — Fletcher Christian" />
+  <meta name="twitter:description" content="Dropping everywhere March 6." />
+  <meta name="twitter:image" content="https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg" />
+
+  <style>
+    :root{
+      --bg:#07080b;
+      --fg:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.68);
+      --stroke:rgba(255,255,255,.12);
+      --glass:rgba(10,12,18,.60);
+      --glass2:rgba(10,12,18,.34);
+
+      --hot: 255 74 140;
+      --cold: 88 210 255;
+      --acid: 190 255 110;
+
+      --spin:0;          /* 0..1 */
+      --tiltX:0deg;
+      --tiltY:0deg;
+      --lift: 0px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background: var(--bg);
+      color:var(--fg);
+      font: 16px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      overflow-x:hidden;
+    }
+
+    /* Ambient layers */
+    .bg{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:-4;
+      background:
+        radial-gradient(1100px 800px at 16% 26%, rgba(var(--cold), .12), transparent 62%),
+        radial-gradient(1100px 900px at 84% 76%, rgba(var(--hot), .11), transparent 62%),
+        radial-gradient(900px 700px at 54% 44%, rgba(var(--acid), .07), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      filter: saturate(1.12);
+    }
+    .vignette{
+      position:fixed; inset:-18%;
+      pointer-events:none;
+      z-index:-3;
+      background: radial-gradient(closest-side at 50% 40%, rgba(0,0,0,0), rgba(0,0,0,.34) 72%, rgba(0,0,0,.86) 100%);
+    }
+
+    /* Film grain */
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:0;
+      z-index:-2;
+      opacity:.12;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      animation: grainMove 7s steps(8) infinite;
+    }
+    @keyframes grainMove{
+      0%{ transform:translate3d(0,0,0); }
+      25%{ transform:translate3d(-3%,2%,0); }
+      50%{ transform:translate3d(2%,-3%,0); }
+      75%{ transform:translate3d(4%,2%,0); }
+      100%{ transform:translate3d(0,0,0); }
+    }
+
+    /* Floating blur blobs */
+    .blob{
+      position:fixed;
+      width: 46vmin;
+      height: 46vmin;
+      border-radius: 50%;
+      filter: blur(42px);
+      opacity: .18;
+      z-index:-3;
+      mix-blend-mode: screen;
+      transform: translate3d(0,0,0);
+      animation: drift 14s ease-in-out infinite;
+    }
+    .blob.b1{
+      left:-12vmin; top: 14vmin;
+      background: radial-gradient(circle at 30% 30%, rgba(var(--cold), .9), transparent 62%);
+      animation-duration: 16s;
+    }
+    .blob.b2{
+      right:-12vmin; bottom: 10vmin;
+      background: radial-gradient(circle at 40% 40%, rgba(var(--hot), .9), transparent 62%);
+      animation-duration: 18s;
+      animation-delay: -4s;
+    }
+    .blob.b3{
+      left: 26vmin; bottom:-18vmin;
+      background: radial-gradient(circle at 50% 50%, rgba(var(--acid), .7), transparent 62%);
+      animation-duration: 20s;
+      animation-delay: -7s;
+      opacity:.14;
+    }
+    @keyframes drift{
+      0%{ transform: translate3d(0,0,0) scale(1); }
+      50%{ transform: translate3d(3vmin,-2vmin,0) scale(1.06); }
+      100%{ transform: translate3d(0,0,0) scale(1); }
+    }
+
+    /* Layout */
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding: clamp(14px, 2.8vw, 36px);
+    }
+    .shell{
+      width: min(1100px, 100%);
+      display:grid;
+      gap: 14px;
+    }
+
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      padding: 10px 12px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.32);
+      user-select:none;
+      color: rgba(255,255,255,.80);
+      font-size: 12px;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      line-height:1;
+    }
+    .dot{
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(var(--acid), .95);
+      box-shadow: 0 0 18px rgba(var(--acid), .35);
+      animation: dotPulse 1.4s ease-in-out infinite;
+    }
+    @keyframes dotPulse{
+      0%,100%{ transform:scale(.92); opacity:.75; }
+      50%{ transform:scale(1.18); opacity:1; }
+    }
+
+    /* Card */
+    .card{
+      border-radius: 28px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(10,12,18,.62), rgba(10,12,18,.24));
+      backdrop-filter: blur(12px);
+      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+      overflow:hidden;
+      position:relative;
+      transform: translate3d(0,0,0);
+    }
+
+    /* Animated edge glow */
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: conic-gradient(
+        from calc(var(--spin) * 1turn),
+        rgba(var(--cold), .0),
+        rgba(var(--cold), .26),
+        rgba(var(--hot), .22),
+        rgba(var(--acid), .18),
+        rgba(var(--cold), .0)
+      );
+      opacity: .55;
+      filter: blur(18px);
+      z-index:0;
+      pointer-events:none;
+    }
+    .card::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(900px 600px at 50% 10%, rgba(255,255,255,.05), transparent 55%);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .cardInner{
+      position:relative;
+      z-index:1;
+      padding: clamp(14px, 2.8vw, 26px);
+      display:grid;
+      gap: 16px;
+    }
+
+    .titleRow{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 16px;
+      flex-wrap:wrap;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 5.2vw, 66px);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      text-shadow: 0 10px 30px rgba(0,0,0,.55);
+    }
+    .artist{
+      margin: 8px 0 0 0;
+      color: rgba(255,255,255,.74);
+      font-size: 14px;
+      letter-spacing: .04em;
+    }
+
+    /* CTA */
+    .ctaRow{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      flex-wrap:wrap;
+      padding-top: 2px;
+    }
+    .ctaText{
+      margin:0;
+      color: rgba(255,255,255,.80);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    /* Content grid */
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items:stretch;
+    }
+
+    /* Art w/ tilt */
+    .art{
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      position:relative;
+      min-height: 420px;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transform:
+        perspective(900px)
+        translateY(var(--lift))
+        rotateX(var(--tiltX))
+        rotateY(var(--tiltY));
+      transition: transform .12s ease;
+    }
+    .art img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.03);
+      filter: contrast(1.02) saturate(1.06);
+    }
+    .art::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(closest-side at 50% 38%, rgba(0,0,0,0), rgba(0,0,0,.38) 72%, rgba(0,0,0,.88) 100%),
+        linear-gradient(120deg, rgba(var(--cold), .10), transparent 45%),
+        linear-gradient(300deg, rgba(var(--hot), .10), transparent 45%);
+      pointer-events:none;
+      mix-blend-mode: screen;
+      opacity:.95;
+    }
+
+    .side{
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(10,12,18,.50), rgba(10,12,18,.18));
+      padding: 12px;
+      display:grid;
+      gap: 12px;
+      align-content:start;
+    }
+
+    .player{
+      border-radius: 18px;
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.28);
+    }
+    iframe{
+      display:block;
+      width:100%;
+      height: 290px;
+      border:0;
+    }
+
+    .actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap:wrap;
+    }
+
+    a.btn, button.btn{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.16);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      color: rgba(255,255,255,.92);
+      border-radius: 14px;
+      padding: 11px 12px;
+      font-weight: 750;
+      letter-spacing: .01em;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      user-select:none;
+      transition: transform .12s ease, border-color .12s ease, filter .12s ease;
+    }
+    a.btn:hover, button.btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.28);
+      filter: saturate(1.08);
+    }
+    a.btn:active, button.btn:active{ transform: translateY(0px); }
+
+    .btn.primary{
+      border-color: rgba(var(--acid), .22);
+      box-shadow: 0 10px 30px rgba(var(--acid), .10);
+    }
+
+    .btn.ghost{
+      background: rgba(255,255,255,.03);
+      border-color: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.82);
+      font-weight: 700;
+    }
+
+    .linksGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .bottomLine{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap: 12px;
+      flex-wrap:wrap;
+      padding-top: 4px;
+    }
+    .stamp{
+      margin:0;
+      color: rgba(255,255,255,.62);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .stamp a{
+      color: rgba(255,255,255,.78);
+      text-decoration:none;
+      border-bottom: 1px solid rgba(255,255,255,.18);
+    }
+    .stamp a:hover{
+      border-bottom-color: rgba(255,255,255,.40);
+    }
+
+    .shareNote{
+      color: rgba(255,255,255,.62);
+      font-size: 12px;
+      margin: 0;
+      min-height: 16px;
+    }
+
+    /* Entry motion */
+    .enter{
+      animation: enter 680ms cubic-bezier(.2,.9,.2,1) both;
+    }
+    @keyframes enter{
+      from{ opacity:0; transform: translate3d(0,10px,0) scale(.99); }
+      to{ opacity:1; transform: translate3d(0,0,0) scale(1); }
+    }
+
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: 1fr; }
+      .art{ min-height: 340px; }
+      iframe{ height: 220px; }
+      .linksGrid{ grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .grain, .blob, .enter { animation: none !important; }
+      .art{ transition:none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <div class="blob b3" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <div class="shell enter">
+      <div class="topbar">
+        <div class="pill"><span class="dot" aria-hidden="true"></span> March 6 • Drops Everywhere</div>
+        <button class="pill" id="shareBtnTop" type="button" aria-label="Share link" style="cursor:pointer;">Share</button>
+      </div>
+
+      <section class="card" id="card">
+        <div class="cardInner">
+          <div class="titleRow">
+            <div>
+              <h1>Can You Feel This?</h1>
+              <p class="artist">Fletcher Christian</p>
+            </div>
+          </div>
+
+          <div class="ctaRow">
+            <p class="ctaText">Follow now — March 6 on Spotify, Apple Music, and everywhere.</p>
+          </div>
+
+          <div class="grid">
+            <div class="art" id="art" aria-label="Cover art">
+              <img
+                src="https://bafybeibe4lbckvszlqmswhszq7u5odfag5ohnot6w62p5nlyogakqi46je.ipfs.dweb.link?filename=Canyoufeelthis.gif"
+                alt="Can You Feel This? cover art" />
+            </div>
+
+            <aside class="side">
+              <div class="player" aria-label="SoundCloud player">
+                <iframe
+                  title="SoundCloud player"
+                  allow="autoplay"
+                  scrolling="no"
+                  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/therealfletcherchristian/can-you-feel-this-f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=true">
+                </iframe>
+              </div>
+
+              <div class="actions">
+                <a class="btn primary" href="https://open.spotify.com/artist/2FjdpboVDGnJs9wuGcJV8H" target="_blank" rel="noopener">Follow on Spotify</a>
+                <a class="btn primary" href="https://music.apple.com/us/artist/fletcher-christian/1237400126" target="_blank" rel="noopener">Follow on Apple Music</a>
+              </div>
+
+              <div class="linksGrid">
+                <a class="btn ghost" href="https://soundcloud.com/therealfletcherchristian/can-you-feel-this-f" target="_blank" rel="noopener">Listen on SoundCloud</a>
+                <button class="btn ghost" id="shareBtn" type="button">Copy Link</button>
+              </div>
+
+              <div class="bottomLine">
+                <p class="stamp">
+                  <a href="https://jamkillerproductions.io/" target="_blank" rel="noopener">A Jam Killer Joint</a>
+                </p>
+                <p class="shareNote" id="shareNote" aria-live="polite"></p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Spin var drives the subtle edge glow
+    (function spinVar(){
+      const root = document.documentElement;
+      let t = 0;
+      function tick(){
+        t += 0.0011;
+        if(t > 1) t = 0;
+        root.style.setProperty("--spin", t.toFixed(6));
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    // Cover tilt
+    (function tilt(){
+      const root = document.documentElement;
+      const art = document.getElementById("art");
+      if(!art) return;
+
+      let raf = 0;
+      function onMove(e){
+        const r = art.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width;
+        const y = (e.clientY - r.top) / r.height;
+        const tiltY = (x - 0.5) * 10;
+        const tiltX = (0.5 - y) * 8;
+        const lift  = -2;
+
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(() => {
+          root.style.setProperty("--tiltX", tiltX.toFixed(2) + "deg");
+          root.style.setProperty("--tiltY", tiltY.toFixed(2) + "deg");
+          root.style.setProperty("--lift", lift + "px");
+        });
+      }
+      function onLeave(){
+        root.style.setProperty("--tiltX", "0deg");
+        root.style.setProperty("--tiltY", "0deg");
+        root.style.setProperty("--lift", "0px");
+      }
+
+      art.addEventListener("pointermove", onMove, { passive:true });
+      art.addEventListener("pointerleave", onLeave, { passive:true });
+    })();
+
+    // Share / Copy
+    (function share(){
+      const shareBtn = document.getElementById("shareBtn");
+      const shareBtnTop = document.getElementById("shareBtnTop");
+      const shareNote = document.getElementById("shareNote");
+
+      async function doShare(){
+        const url = window.location.href;
+        const title = "Can You Feel This? — Fletcher Christian";
+        try{
+          if(navigator.share){
+            await navigator.share({ title, url });
+            return;
+          }
+          await navigator.clipboard.writeText(url);
+          shareNote.textContent = "Link copied.";
+          setTimeout(() => shareNote.textContent = "", 1200);
+        }catch{
+          // no-op
+        }
+      }
+
+      shareBtn?.addEventListener("click", doShare);
+      shareBtnTop?.addEventListener("click", doShare);
+    })();
+  </script>
+</body>
+</html>
