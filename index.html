@@ -36,7 +36,7 @@
       --cold: 88 210 255;
       --acid: 190 255 110;
 
-      --spin:0;          /* 0..1 */
+      --spin:0;
       --tiltX:0deg;
       --tiltY:0deg;
       --lift: 0px;
@@ -52,7 +52,6 @@
       overflow-x:hidden;
     }
 
-    /* Ambient layers */
     .bg{
       position:fixed; inset:0;
       pointer-events:none;
@@ -71,7 +70,6 @@
       background: radial-gradient(closest-side at 50% 40%, rgba(0,0,0,0), rgba(0,0,0,.34) 72%, rgba(0,0,0,.86) 100%);
     }
 
-    /* Film grain */
     .grain{
       pointer-events:none;
       position:fixed; inset:0;
@@ -89,7 +87,6 @@
       100%{ transform:translate3d(0,0,0); }
     }
 
-    /* Floating blur blobs */
     .blob{
       position:fixed;
       width: 46vmin;
@@ -126,7 +123,6 @@
       100%{ transform: translate3d(0,0,0) scale(1); }
     }
 
-    /* Layout */
     .wrap{
       min-height:100%;
       display:grid;
@@ -175,7 +171,6 @@
       50%{ transform:scale(1.18); opacity:1; }
     }
 
-    /* Card */
     .card{
       border-radius: 28px;
       border:1px solid rgba(255,255,255,.12);
@@ -186,8 +181,6 @@
       position:relative;
       transform: translate3d(0,0,0);
     }
-
-    /* Animated edge glow */
     .card::before{
       content:"";
       position:absolute; inset:-2px;
@@ -241,7 +234,6 @@
       letter-spacing: .04em;
     }
 
-    /* CTA */
     .ctaRow{
       display:flex;
       align-items:center;
@@ -258,7 +250,6 @@
       text-transform: uppercase;
     }
 
-    /* Content grid */
     .grid{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
@@ -266,7 +257,6 @@
       align-items:stretch;
     }
 
-    /* Art w/ tilt */
     .art{
       border-radius: 22px;
       overflow:hidden;
@@ -320,7 +310,6 @@
       background: rgba(0,0,0,.28);
     }
 
-    /* Video sizing */
     .player video{
       display:block;
       width:100%;
@@ -409,7 +398,6 @@
       min-height: 16px;
     }
 
-    /* Entry motion */
     .enter{
       animation: enter 680ms cubic-bezier(.2,.9,.2,1) both;
     }
@@ -470,7 +458,7 @@
             <aside class="side">
               <!-- Promo video (IPFS) -->
               <div class="player" aria-label="Promo video">
-                <video controls playsinline preload="metadata">
+                <video id="promoVideo" controls playsinline preload="metadata">
                   <source src="https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4" type="video/mp4">
                 </video>
               </div>
@@ -482,7 +470,8 @@
 
               <div class="linksGrid">
                 <a class="btn ghost" href="https://soundcloud.com/therealfletcherchristian/can-you-feel-this-f" target="_blank" rel="noopener">Listen on SoundCloud</a>
-                <button class="btn ghost" id="shareBtn" type="button">Copy Link</button>
+                <button class="btn ghost" id="shareVideoBtn" type="button">Share Video</button>
+                <button class="btn ghost" id="shareBtn" type="button">Copy Page Link</button>
               </div>
 
               <div class="bottomLine">
@@ -499,6 +488,9 @@
   </main>
 
   <script>
+    // Single source of truth for the promo video link
+    const VIDEO_URL = "https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4";
+
     // Spin var drives the subtle edge glow
     (function spinVar(){
       const root = document.documentElement;
@@ -544,13 +536,20 @@
       art.addEventListener("pointerleave", onLeave, { passive:true });
     })();
 
-    // Share / Copy
+    // Share / Copy (page + video)
     (function share(){
       const shareBtn = document.getElementById("shareBtn");
       const shareBtnTop = document.getElementById("shareBtnTop");
+      const shareVideoBtn = document.getElementById("shareVideoBtn");
       const shareNote = document.getElementById("shareNote");
 
-      async function doShare(){
+      function toast(msg){
+        if(!shareNote) return;
+        shareNote.textContent = msg;
+        setTimeout(() => shareNote.textContent = "", 1400);
+      }
+
+      async function sharePage(){
         const url = window.location.href;
         const title = "Can You Feel This? — Fletcher Christian";
         try{
@@ -559,15 +558,26 @@
             return;
           }
           await navigator.clipboard.writeText(url);
-          shareNote.textContent = "Link copied.";
-          setTimeout(() => shareNote.textContent = "", 1200);
-        }catch{
-          // no-op
-        }
+          toast("Page link copied.");
+        }catch{}
       }
 
-      shareBtn?.addEventListener("click", doShare);
-      shareBtnTop?.addEventListener("click", doShare);
+      async function shareVideo(){
+        const url = VIDEO_URL;
+        const title = "Can You Feel This? — Promo Video";
+        try{
+          if(navigator.share){
+            await navigator.share({ title, url });
+            return;
+          }
+          await navigator.clipboard.writeText(url);
+          toast("Video link copied.");
+        }catch{}
+      }
+
+      shareBtn?.addEventListener("click", sharePage);
+      shareBtnTop?.addEventListener("click", sharePage);
+      shareVideoBtn?.addEventListener("click", shareVideo);
     })();
   </script>
 </body>
