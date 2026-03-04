@@ -31,8 +31,6 @@
       --fg:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.68);
       --stroke:rgba(255,255,255,.12);
-      --glass:rgba(10,12,18,.60);
-      --glass2:rgba(10,12,18,.34);
 
       --hot: 255 74 140;
       --cold: 88 210 255;
@@ -321,13 +319,8 @@
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.28);
     }
-    iframe{
-      display:block;
-      width:100%;
-      height: 290px;
-      border:0;
-    }
-    /* promo video sizing to match iframe */
+
+    /* Video sizing */
     .player video{
       display:block;
       width:100%;
@@ -428,7 +421,6 @@
     @media (max-width: 980px){
       .grid{ grid-template-columns: 1fr; }
       .art{ min-height: 340px; }
-      iframe{ height: 220px; }
       .player video{ height:220px; }
       .linksGrid{ grid-template-columns: 1fr; }
     }
@@ -465,7 +457,7 @@
           </div>
 
           <div class="ctaRow">
-            <p class="ctaText">Follow now — March 6 on Spotify, Apple Music, and everywhere.</p>
+            <p class="ctaText">Watch the promo — then follow on Spotify, Apple Music, and SoundCloud.</p>
           </div>
 
           <div class="grid">
@@ -481,15 +473,6 @@
                 <video controls playsinline preload="metadata">
                   <source src="https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4" type="video/mp4">
                 </video>
-              </div>
-
-              <div class="player" aria-label="SoundCloud player">
-                <iframe
-                  title="SoundCloud player"
-                  allow="autoplay"
-                  scrolling="no"
-                  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/therealfletcherchristian/can-you-feel-this-f&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&visual=true">
-                </iframe>
               </div>
 
               <div class="actions">
