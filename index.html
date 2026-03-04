@@ -341,6 +341,7 @@
       gap:10px;
       user-select:none;
       transition: transform .12s ease, border-color .12s ease, filter .12s ease;
+      white-space:nowrap;
     }
     a.btn:hover, button.btn:hover{
       transform: translateY(-1px);
@@ -362,6 +363,12 @@
     }
 
     .linksGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .shareGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
@@ -410,7 +417,7 @@
       .grid{ grid-template-columns: 1fr; }
       .art{ min-height: 340px; }
       .player video{ height:220px; }
-      .linksGrid{ grid-template-columns: 1fr; }
+      .linksGrid, .shareGrid{ grid-template-columns: 1fr; }
     }
 
     @media (prefers-reduced-motion: reduce){
@@ -432,7 +439,7 @@
     <div class="shell enter">
       <div class="topbar">
         <div class="pill"><span class="dot" aria-hidden="true"></span> March 6 • Drops Everywhere</div>
-        <button class="pill" id="shareBtnTop" type="button" aria-label="Share link" style="cursor:pointer;">Share</button>
+        <button class="pill" id="sharePageBtnTop" type="button" aria-label="Share page link" style="cursor:pointer;">Share Page</button>
       </div>
 
       <section class="card" id="card">
@@ -456,7 +463,6 @@
             </div>
 
             <aside class="side">
-              <!-- Promo video (IPFS) -->
               <div class="player" aria-label="Promo video">
                 <video id="promoVideo" controls playsinline preload="metadata">
                   <source src="https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4" type="video/mp4">
@@ -470,8 +476,15 @@
 
               <div class="linksGrid">
                 <a class="btn ghost" href="https://soundcloud.com/therealfletcherchristian/can-you-feel-this-f" target="_blank" rel="noopener">Listen on SoundCloud</a>
-                <button class="btn ghost" id="shareVideoBtn" type="button">Share Video</button>
-                <button class="btn ghost" id="shareBtn" type="button">Copy Page Link</button>
+                <a class="btn ghost" id="openVideoLink" href="#" target="_blank" rel="noopener">Open Video</a>
+              </div>
+
+              <!-- 🔥 One-tap social sharing for the VIDEO -->
+              <div class="shareGrid" aria-label="Share video">
+                <button class="btn ghost" id="nativeShareVideoBtn" type="button">Share Video</button>
+                <button class="btn ghost" id="copyVideoBtn" type="button">Copy Video Link</button>
+                <a class="btn ghost" id="shareX" href="#" target="_blank" rel="noopener">Share on X</a>
+                <a class="btn ghost" id="shareFB" href="#" target="_blank" rel="noopener">Share on Facebook</a>
               </div>
 
               <div class="bottomLine">
@@ -488,8 +501,11 @@
   </main>
 
   <script>
-    // Single source of truth for the promo video link
+    // Raw MP4 on IPFS
     const VIDEO_URL = "https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4";
+
+    // Share-optimized page (you will add video.html next to index.html)
+    const VIDEO_SHARE_PAGE = new URL("video.html", window.location.href).toString();
 
     // Spin var drives the subtle edge glow
     (function spinVar(){
@@ -536,25 +552,56 @@
       art.addEventListener("pointerleave", onLeave, { passive:true });
     })();
 
-    // Share / Copy (page + video)
-    (function share(){
-      const shareBtn = document.getElementById("shareBtn");
-      const shareBtnTop = document.getElementById("shareBtnTop");
-      const shareVideoBtn = document.getElementById("shareVideoBtn");
-      const shareNote = document.getElementById("shareNote");
+    (function sharing(){
+      const note = document.getElementById("shareNote");
+      const openVideoLink = document.getElementById("openVideoLink");
+      const nativeShareVideoBtn = document.getElementById("nativeShareVideoBtn");
+      const copyVideoBtn = document.getElementById("copyVideoBtn");
+      const shareX = document.getElementById("shareX");
+      const shareFB = document.getElementById("shareFB");
+      const sharePageBtnTop = document.getElementById("sharePageBtnTop");
 
       function toast(msg){
-        if(!shareNote) return;
-        shareNote.textContent = msg;
-        setTimeout(() => shareNote.textContent = "", 1400);
+        if(!note) return;
+        note.textContent = msg;
+        setTimeout(() => note.textContent = "", 1600);
       }
 
-      async function sharePage(){
-        const url = window.location.href;
-        const title = "Can You Feel This? — Fletcher Christian";
+      // Make "Open Video" open the raw mp4
+      openVideoLink.href = VIDEO_URL;
+
+      // Build one-tap social links using the SHARE PAGE (best preview)
+      const shareText = "Can You Feel This? — Promo Video (Fletcher Christian)";
+      const xUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(VIDEO_SHARE_PAGE);
+      const fbUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(VIDEO_SHARE_PAGE);
+
+      shareX.href = xUrl;
+      shareFB.href = fbUrl;
+
+      // Native share: share the SHARE PAGE (not the raw mp4)
+      async function nativeShareVideo(){
         try{
           if(navigator.share){
-            await navigator.share({ title, url });
+            await navigator.share({ title: "Can You Feel This? — Promo Video", text: shareText, url: VIDEO_SHARE_PAGE });
+            return;
+          }
+          await navigator.clipboard.writeText(VIDEO_SHARE_PAGE);
+          toast("Video share link copied.");
+        }catch{}
+      }
+
+      async function copyVideoShareLink(){
+        try{
+          await navigator.clipboard.writeText(VIDEO_SHARE_PAGE);
+          toast("Video share link copied.");
+        }catch{}
+      }
+
+      async function nativeSharePage(){
+        const url = window.location.href;
+        try{
+          if(navigator.share){
+            await navigator.share({ title: "Can You Feel This? — Fletcher Christian", url });
             return;
           }
           await navigator.clipboard.writeText(url);
@@ -562,22 +609,9 @@
         }catch{}
       }
 
-      async function shareVideo(){
-        const url = VIDEO_URL;
-        const title = "Can You Feel This? — Promo Video";
-        try{
-          if(navigator.share){
-            await navigator.share({ title, url });
-            return;
-          }
-          await navigator.clipboard.writeText(url);
-          toast("Video link copied.");
-        }catch{}
-      }
-
-      shareBtn?.addEventListener("click", sharePage);
-      shareBtnTop?.addEventListener("click", sharePage);
-      shareVideoBtn?.addEventListener("click", shareVideo);
+      nativeShareVideoBtn?.addEventListener("click", nativeShareVideo);
+      copyVideoBtn?.addEventListener("click", copyVideoShareLink);
+      sharePageBtnTop?.addEventListener("click", nativeSharePage);
     })();
   </script>
 </body>
