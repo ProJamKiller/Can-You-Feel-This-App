@@ -327,6 +327,14 @@
       height: 290px;
       border:0;
     }
+    /* promo video sizing to match iframe */
+    .player video{
+      display:block;
+      width:100%;
+      height:290px;
+      object-fit:cover;
+      border:0;
+    }
 
     .actions{
       display:flex;
@@ -421,6 +429,7 @@
       .grid{ grid-template-columns: 1fr; }
       .art{ min-height: 340px; }
       iframe{ height: 220px; }
+      .player video{ height:220px; }
       .linksGrid{ grid-template-columns: 1fr; }
     }
 
@@ -467,6 +476,13 @@
             </div>
 
             <aside class="side">
+              <!-- Promo video (IPFS) -->
+              <div class="player" aria-label="Promo video">
+                <video controls playsinline preload="metadata">
+                  <source src="https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4" type="video/mp4">
+                </video>
+              </div>
+
               <div class="player" aria-label="SoundCloud player">
                 <iframe
                   title="SoundCloud player"
