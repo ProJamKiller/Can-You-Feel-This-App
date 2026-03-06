@@ -3,616 +3,634 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-
-  <title>Can You Feel This? — Fletcher Christian</title>
-  <meta name="description" content="Can You Feel This? by Fletcher Christian. Dropping everywhere March 6." />
   <meta name="theme-color" content="#07080b" />
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://bafybeiadofj7nov5h427pnvgilj5kdtq5wvpu65dnr4ba3pluxrmwqfnie.ipfs.dweb.link?filename=Can%20You%20Feel%20This%3F%20Main%20Pic.jpeg" type="image/jpeg" />
-  <link rel="apple-touch-icon" href="https://bafybeiadofj7nov5h427pnvgilj5kdtq5wvpu65dnr4ba3pluxrmwqfnie.ipfs.dweb.link?filename=Can%20You%20Feel%20This%3F%20Main%20Pic.jpeg" />
+  <title>Can You Feel This? — Fletcher Christian</title>
+  <meta name="description" content="Official release page for Can You Feel This? by Fletcher Christian. Stream the single, watch the promo video, and share it everywhere." />
 
-  <!-- Social share -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Can You Feel This? — Fletcher Christian" />
-  <meta property="og:description" content="Dropping everywhere March 6." />
+  <meta property="og:description" content="Official release page for Can You Feel This? by Fletcher Christian." />
   <meta property="og:image" content="https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg" />
-  <meta property="og:image:alt" content="Can You Feel This? — Fletcher Christian" />
+  <meta property="og:image:alt" content="Can You Feel This? cover art by Fletcher Christian" />
   <meta property="og:site_name" content="Fletcher Christian" />
+  <meta property="og:url" content="" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Can You Feel This? — Fletcher Christian" />
-  <meta name="twitter:description" content="Dropping everywhere March 6." />
+  <meta name="twitter:description" content="Official release page for Can You Feel This? by Fletcher Christian." />
   <meta name="twitter:image" content="https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg" />
 
   <style>
     :root{
       --bg:#07080b;
-      --fg:rgba(255,255,255,.92);
+      --bg2:#0d1118;
+      --card:rgba(11,14,20,.72);
+      --card-2:rgba(255,255,255,.05);
+      --text:rgba(255,255,255,.96);
       --muted:rgba(255,255,255,.68);
-      --stroke:rgba(255,255,255,.12);
-
-      --hot: 255 74 140;
-      --cold: 88 210 255;
-      --acid: 190 255 110;
-
-      --spin:0;
-      --tiltX:0deg;
-      --tiltY:0deg;
-      --lift: 0px;
+      --line:rgba(255,255,255,.12);
+      --line-strong:rgba(255,255,255,.22);
+      --shadow:0 20px 80px rgba(0,0,0,.45);
+      --radius:24px;
+      --radius-sm:18px;
+      --max:1120px;
     }
 
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    html,body{ min-height:100%; }
+    html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
-      background: var(--bg);
-      color:var(--fg);
-      font: 16px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      overflow-x:hidden;
-    }
-
-    .bg{
-      position:fixed; inset:0;
-      pointer-events:none;
-      z-index:-4;
+      color:var(--text);
+      font:16px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       background:
-        radial-gradient(1100px 800px at 16% 26%, rgba(var(--cold), .12), transparent 62%),
-        radial-gradient(1100px 900px at 84% 76%, rgba(var(--hot), .11), transparent 62%),
-        radial-gradient(900px 700px at 54% 44%, rgba(var(--acid), .07), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
-      filter: saturate(1.12);
-    }
-    .vignette{
-      position:fixed; inset:-18%;
-      pointer-events:none;
-      z-index:-3;
-      background: radial-gradient(closest-side at 50% 40%, rgba(0,0,0,0), rgba(0,0,0,.34) 72%, rgba(0,0,0,.86) 100%);
+        radial-gradient(circle at top, rgba(88,115,255,.12), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.08), transparent 24%),
+        linear-gradient(180deg, rgba(7,8,11,.92), rgba(7,8,11,1)),
+        var(--bg);
+      padding:20px;
     }
 
-    .grain{
-      pointer-events:none;
-      position:fixed; inset:0;
-      z-index:-2;
-      opacity:.12;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='260' height='260' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay;
-      animation: grainMove 7s steps(8) infinite;
-    }
-    @keyframes grainMove{
-      0%{ transform:translate3d(0,0,0); }
-      25%{ transform:translate3d(-3%,2%,0); }
-      50%{ transform:translate3d(2%,-3%,0); }
-      75%{ transform:translate3d(4%,2%,0); }
-      100%{ transform:translate3d(0,0,0); }
-    }
+    a{ color:inherit; }
 
-    .blob{
-      position:fixed;
-      width: 46vmin;
-      height: 46vmin;
-      border-radius: 50%;
-      filter: blur(42px);
-      opacity: .18;
-      z-index:-3;
-      mix-blend-mode: screen;
-      transform: translate3d(0,0,0);
-      animation: drift 14s ease-in-out infinite;
-    }
-    .blob.b1{
-      left:-12vmin; top: 14vmin;
-      background: radial-gradient(circle at 30% 30%, rgba(var(--cold), .9), transparent 62%);
-      animation-duration: 16s;
-    }
-    .blob.b2{
-      right:-12vmin; bottom: 10vmin;
-      background: radial-gradient(circle at 40% 40%, rgba(var(--hot), .9), transparent 62%);
-      animation-duration: 18s;
-      animation-delay: -4s;
-    }
-    .blob.b3{
-      left: 26vmin; bottom:-18vmin;
-      background: radial-gradient(circle at 50% 50%, rgba(var(--acid), .7), transparent 62%);
-      animation-duration: 20s;
-      animation-delay: -7s;
-      opacity:.14;
-    }
-    @keyframes drift{
-      0%{ transform: translate3d(0,0,0) scale(1); }
-      50%{ transform: translate3d(3vmin,-2vmin,0) scale(1.06); }
-      100%{ transform: translate3d(0,0,0) scale(1); }
-    }
-
-    .wrap{
-      min-height:100%;
+    .page{
+      width:min(var(--max), 100%);
+      margin:0 auto;
       display:grid;
-      place-items:center;
-      padding: clamp(14px, 2.8vw, 36px);
-    }
-    .shell{
-      width: min(1100px, 100%);
-      display:grid;
-      gap: 14px;
+      gap:18px;
     }
 
-    .topbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap: 12px;
-      flex-wrap:wrap;
-    }
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap: 10px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.14);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      padding: 10px 12px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.32);
-      user-select:none;
-      color: rgba(255,255,255,.80);
-      font-size: 12px;
-      letter-spacing: .10em;
-      text-transform: uppercase;
-      line-height:1;
-    }
-    .dot{
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: rgba(var(--acid), .95);
-      box-shadow: 0 0 18px rgba(var(--acid), .35);
-      animation: dotPulse 1.4s ease-in-out infinite;
-    }
-    @keyframes dotPulse{
-      0%,100%{ transform:scale(.92); opacity:.75; }
-      50%{ transform:scale(1.18); opacity:1; }
-    }
-
-    .card{
-      border-radius: 28px;
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(10,12,18,.62), rgba(10,12,18,.24));
-      backdrop-filter: blur(12px);
-      box-shadow: 0 30px 100px rgba(0,0,0,.55);
-      overflow:hidden;
+    .hero{
       position:relative;
-      transform: translate3d(0,0,0);
-    }
-    .card::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: conic-gradient(
-        from calc(var(--spin) * 1turn),
-        rgba(var(--cold), .0),
-        rgba(var(--cold), .26),
-        rgba(var(--hot), .22),
-        rgba(var(--acid), .18),
-        rgba(var(--cold), .0)
-      );
-      opacity: .55;
-      filter: blur(18px);
-      z-index:0;
-      pointer-events:none;
-    }
-    .card::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(900px 600px at 50% 10%, rgba(255,255,255,.05), transparent 55%);
-      z-index:0;
-      pointer-events:none;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:32px;
+      min-height:720px;
+      background:
+        linear-gradient(180deg, rgba(8,10,14,.1), rgba(8,10,14,.78)),
+        url("https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg") center top / cover no-repeat;
+      box-shadow:var(--shadow);
+      display:grid;
+      align-items:end;
+      isolation:isolate;
     }
 
-    .cardInner{
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(180deg, rgba(7,8,11,.12) 0%, rgba(7,8,11,.22) 30%, rgba(7,8,11,.82) 72%, rgba(7,8,11,.95) 100%);
+      z-index:0;
+    }
+
+    .hero-inner{
       position:relative;
       z-index:1;
-      padding: clamp(14px, 2.8vw, 26px);
+      padding:28px;
       display:grid;
-      gap: 16px;
+      gap:18px;
     }
 
-    .titleRow{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 16px;
-      flex-wrap:wrap;
+    .pill{
+      width:max-content;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      backdrop-filter:blur(10px);
+      color:rgba(255,255,255,.9);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.12em;
     }
+
     h1{
       margin:0;
-      font-size: clamp(30px, 5.2vw, 66px);
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      text-shadow: 0 10px 30px rgba(0,0,0,.55);
-    }
-    .artist{
-      margin: 8px 0 0 0;
-      color: rgba(255,255,255,.74);
-      font-size: 14px;
-      letter-spacing: .04em;
+      font-size:clamp(2.8rem, 9vw, 6.4rem);
+      line-height:.92;
+      letter-spacing:-.05em;
+      max-width:8ch;
+      text-wrap:balance;
     }
 
-    .ctaRow{
+    .artist{
+      margin:0;
+      font-size:clamp(1rem, 2vw, 1.15rem);
+      color:var(--muted);
+      font-weight:700;
+      letter-spacing:.01em;
+    }
+
+    .summary{
+      margin:0;
+      max-width:58ch;
+      color:rgba(255,255,255,.84);
+      font-size:clamp(1rem, 2vw, 1.08rem);
+    }
+
+    .hero-actions,
+    .share-actions,
+    .stream-grid{
+      display:grid;
+      gap:12px;
+    }
+
+    .hero-actions{
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    }
+
+    .stream-grid{
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    }
+
+    .share-actions{
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    }
+
+    .btn,
+    .tile{
+      position:relative;
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      flex-wrap:wrap;
-      padding-top: 2px;
-    }
-    .ctaText{
-      margin:0;
-      color: rgba(255,255,255,.80);
-      font-size: 13px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 14px;
-      align-items:stretch;
-    }
-
-    .art{
-      border-radius: 22px;
-      overflow:hidden;
+      gap:14px;
+      min-height:64px;
+      padding:15px 16px;
+      border-radius:18px;
       border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      position:relative;
-      min-height: 420px;
-      transform-style: preserve-3d;
-      will-change: transform;
-      transform:
-        perspective(900px)
-        translateY(var(--lift))
-        rotateX(var(--tiltX))
-        rotateY(var(--tiltY));
-      transition: transform .12s ease;
-    }
-    .art img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      transform: scale(1.03);
-      filter: contrast(1.02) saturate(1.06);
-    }
-    .art::after{
-      content:"";
-      position:absolute; inset:0;
-      background:
-        radial-gradient(closest-side at 50% 38%, rgba(0,0,0,0), rgba(0,0,0,.38) 72%, rgba(0,0,0,.88) 100%),
-        linear-gradient(120deg, rgba(var(--cold), .10), transparent 45%),
-        linear-gradient(300deg, rgba(var(--hot), .10), transparent 45%);
-      pointer-events:none;
-      mix-blend-mode: screen;
-      opacity:.95;
-    }
-
-    .side{
-      border-radius: 22px;
-      border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(10,12,18,.50), rgba(10,12,18,.18));
-      padding: 12px;
-      display:grid;
-      gap: 12px;
-      align-content:start;
-    }
-
-    .player{
-      border-radius: 18px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.28);
-    }
-
-    .player video{
-      display:block;
-      width:100%;
-      height:290px;
-      object-fit:cover;
-      border:0;
-    }
-
-    .actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-    }
-
-    a.btn, button.btn{
-      appearance:none;
-      border:1px solid rgba(255,255,255,.16);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      color: rgba(255,255,255,.92);
-      border-radius: 14px;
-      padding: 11px 12px;
-      font-weight: 750;
-      letter-spacing: .01em;
-      cursor:pointer;
+      background:rgba(255,255,255,.06);
       text-decoration:none;
+      color:var(--text);
+      transition:transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+      backdrop-filter:blur(12px);
+      box-shadow:0 6px 24px rgba(0,0,0,.18);
+      cursor:pointer;
+    }
+
+    .btn:hover,
+    .tile:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.24);
+      background:rgba(255,255,255,.1);
+      box-shadow:0 14px 34px rgba(0,0,0,.26);
+    }
+
+    .btn.primary{
+      background:rgba(255,255,255,.96);
+      color:#0b0d11;
+      border-color:rgba(255,255,255,.94);
+      font-weight:900;
+    }
+
+    .btn.primary:hover{
+      background:#fff;
+    }
+
+    .icon{
+      width:22px;
+      height:22px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
-      user-select:none;
-      transition: transform .12s ease, border-color .12s ease, filter .12s ease;
+      flex:0 0 22px;
+    }
+
+    .icon svg{
+      width:22px;
+      height:22px;
+      display:block;
+      fill:currentColor;
+    }
+
+    .btn-text,
+    .tile-text{
+      display:grid;
+      gap:2px;
+      min-width:0;
+    }
+
+    .btn-label,
+    .tile-label{
+      font-weight:850;
+      letter-spacing:-.02em;
+    }
+
+    .btn-sub,
+    .tile-sub{
+      font-size:13px;
+      color:var(--muted);
       white-space:nowrap;
-    }
-    a.btn:hover, button.btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,255,255,.28);
-      filter: saturate(1.08);
-    }
-    a.btn:active, button.btn:active{ transform: translateY(0px); }
-
-    .btn.primary{
-      border-color: rgba(var(--acid), .22);
-      box-shadow: 0 10px 30px rgba(var(--acid), .10);
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .btn.ghost{
-      background: rgba(255,255,255,.03);
-      border-color: rgba(255,255,255,.12);
-      color: rgba(255,255,255,.82);
-      font-weight: 700;
+    .btn.primary .btn-sub{
+      color:rgba(11,13,17,.68);
     }
 
-    .linksGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .panel{
+      border:1px solid var(--line);
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
     }
 
-    .shareGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .panel-body{
+      padding:22px;
     }
 
-    .bottomLine{
+    .section-head{
       display:flex;
+      align-items:end;
       justify-content:space-between;
-      align-items:center;
-      gap: 12px;
+      gap:16px;
+      margin-bottom:14px;
       flex-wrap:wrap;
-      padding-top: 4px;
     }
-    .stamp{
+
+    .section-head h2{
       margin:0;
-      color: rgba(255,255,255,.62);
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      font-size:1.1rem;
+      letter-spacing:-.02em;
     }
-    .stamp a{
-      color: rgba(255,255,255,.78);
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .meta-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .meta{
+      padding:14px;
+      border-radius:18px;
+      background:var(--card-2);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .meta-label{
+      margin:0 0 5px;
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+
+    .meta-value{
+      margin:0;
+      font-size:15px;
+      font-weight:800;
+      letter-spacing:-.01em;
+      word-break:break-word;
+    }
+
+    .footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      padding:8px 4px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer a{
       text-decoration:none;
-      border-bottom: 1px solid rgba(255,255,255,.18);
-    }
-    .stamp a:hover{
-      border-bottom-color: rgba(255,255,255,.40);
+      color:inherit;
     }
 
-    .shareNote{
-      color: rgba(255,255,255,.62);
-      font-size: 12px;
-      margin: 0;
-      min-height: 16px;
+    .footer a:hover{
+      color:var(--text);
     }
 
-    .enter{
-      animation: enter 680ms cubic-bezier(.2,.9,.2,1) both;
-    }
-    @keyframes enter{
-      from{ opacity:0; transform: translate3d(0,10px,0) scale(.99); }
-      to{ opacity:1; transform: translate3d(0,0,0) scale(1); }
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:22px;
+      transform:translateX(-50%) translateY(18px);
+      background:rgba(10,12,18,.94);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:10px 14px;
+      box-shadow:0 14px 40px rgba(0,0,0,.32);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+      z-index:50;
+      font-size:14px;
+      font-weight:700;
     }
 
-    @media (max-width: 980px){
-      .grid{ grid-template-columns: 1fr; }
-      .art{ min-height: 340px; }
-      .player video{ height:220px; }
-      .linksGrid, .shareGrid{ grid-template-columns: 1fr; }
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
     }
 
-    @media (prefers-reduced-motion: reduce){
-      .grain, .blob, .enter { animation: none !important; }
-      .art{ transition:none; }
+    @media (max-width: 860px){
+      .hero{
+        min-height:640px;
+      }
+      .meta-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 640px){
+      body{ padding:14px; }
+      .hero-inner,
+      .panel-body{ padding:18px; }
+      .hero{
+        min-height:560px;
+        border-radius:26px;
+      }
+      .meta-grid{
+        grid-template-columns:1fr;
+      }
+      .btn,.tile{
+        min-height:60px;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <div class="blob b1" aria-hidden="true"></div>
-  <div class="blob b2" aria-hidden="true"></div>
-  <div class="blob b3" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
-  <div class="grain" aria-hidden="true"></div>
+  <main class="page">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="pill">Out now • Jam Killer Productions LLC</div>
 
-  <main class="wrap">
-    <div class="shell enter">
-      <div class="topbar">
-        <div class="pill"><span class="dot" aria-hidden="true"></span> March 6 • Drops Everywhere</div>
-        <button class="pill" id="sharePageBtnTop" type="button" aria-label="Share page link" style="cursor:pointer;">Share Page</button>
+        <div>
+          <h1>Can You Feel This?</h1>
+          <p class="artist">Fletcher Christian</p>
+        </div>
+
+        <p class="summary">
+          Blues-rock with teeth. Hit the single, open the promo video, and share the page without making people dig through a maze of dumb shit.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="./video.html">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 5.14v13.72a1 1 0 0 0 1.53.85l10.84-6.86a1 1 0 0 0 0-1.7L9.53 4.29A1 1 0 0 0 8 5.14Z"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-label">Open Video</span>
+              <span class="btn-sub">Watch the promo</span>
+            </span>
+          </a>
+
+          <button class="btn" type="button" id="sharePageBtn">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 16a2.98 2.98 0 0 0-2.4 1.2l-6.77-3.38a3.12 3.12 0 0 0 0-1.64l6.77-3.38A3 3 0 1 0 15 7a3.12 3.12 0 0 0 .05.54L8.28 10.9a3 3 0 1 0 0 2.2l6.77 3.36A3 3 0 1 0 18 16Z"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-label">Share Page</span>
+              <span class="btn-sub">Native share where supported</span>
+            </span>
+          </button>
+
+          <button class="btn" type="button" id="copyPageBtn">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1Zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H10V7h9v14Z"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-label">Copy Link</span>
+              <span class="btn-sub">Grab the release page URL</span>
+            </span>
+          </button>
+        </div>
       </div>
+    </section>
 
-      <section class="card" id="card">
-        <div class="cardInner">
-          <div class="titleRow">
-            <div>
-              <h1>Can You Feel This?</h1>
-              <p class="artist">Fletcher Christian</p>
-            </div>
-          </div>
-
-          <div class="ctaRow">
-            <p class="ctaText">Watch the promo — then follow on Spotify, Apple Music, and SoundCloud.</p>
-          </div>
-
-          <div class="grid">
-            <div class="art" id="art" aria-label="Cover art">
-              <img
-                src="https://bafybeibe4lbckvszlqmswhszq7u5odfag5ohnot6w62p5nlyogakqi46je.ipfs.dweb.link?filename=Canyoufeelthis.gif"
-                alt="Can You Feel This? cover art" />
-            </div>
-
-            <aside class="side">
-              <div class="player" aria-label="Promo video">
-                <video id="promoVideo" controls playsinline preload="metadata">
-                  <source src="https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4" type="video/mp4">
-                </video>
-              </div>
-
-              <div class="actions">
-                <a class="btn primary" href="https://open.spotify.com/artist/2FjdpboVDGnJs9wuGcJV8H" target="_blank" rel="noopener">Follow on Spotify</a>
-                <a class="btn primary" href="https://music.apple.com/us/artist/fletcher-christian/1237400126" target="_blank" rel="noopener">Follow on Apple Music</a>
-              </div>
-
-              <div class="linksGrid">
-                <a class="btn ghost" href="https://soundcloud.com/therealfletcherchristian/can-you-feel-this-f" target="_blank" rel="noopener">Listen on SoundCloud</a>
-                <a class="btn ghost" id="openVideoLink" href="#" target="_blank" rel="noopener">Open Video</a>
-              </div>
-
-              <!-- 🔥 One-tap social sharing for the VIDEO -->
-              <div class="shareGrid" aria-label="Share video">
-                <button class="btn ghost" id="nativeShareVideoBtn" type="button">Share Video</button>
-                <button class="btn ghost" id="copyVideoBtn" type="button">Copy Video Link</button>
-                <a class="btn ghost" id="shareX" href="#" target="_blank" rel="noopener">Share on X</a>
-                <a class="btn ghost" id="shareFB" href="#" target="_blank" rel="noopener">Share on Facebook</a>
-              </div>
-
-              <div class="bottomLine">
-                <p class="stamp">
-                  <a href="https://jamkillerproductions.io/" target="_blank" rel="noopener">A Jam Killer Joint</a>
-                </p>
-                <p class="shareNote" id="shareNote" aria-live="polite"></p>
-              </div>
-            </aside>
+    <section class="panel">
+      <div class="panel-body">
+        <div class="section-head">
+          <div>
+            <h2>Listen everywhere</h2>
+            <p>Big buttons. Actual icons. No clutter.</p>
           </div>
         </div>
-      </section>
+
+        <div class="stream-grid">
+          <a class="tile" href="https://open.spotify.com/artist/2FjdpboVDGnJs9wuGcJV8H" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 1.5A10.5 10.5 0 1 0 22.5 12 10.51 10.51 0 0 0 12 1.5Zm4.82 15.14a.66.66 0 0 1-.91.22c-2.5-1.53-5.65-1.88-9.35-1.04a.66.66 0 1 1-.29-1.28c4.05-.92 7.54-.51 10.33 1.2a.66.66 0 0 1 .22.9Zm1.29-2.87a.82.82 0 0 1-1.13.27c-2.86-1.76-7.21-2.27-10.59-1.22a.82.82 0 1 1-.49-1.57c3.85-1.2 8.65-.62 11.94 1.4a.82.82 0 0 1 .27 1.12Zm.11-3a.98.98 0 0 1-1.35.32c-3.27-2-8.67-2.18-11.79-1.2a.98.98 0 0 1-.59-1.87c3.58-1.13 9.52-.91 13.4 1.46a.98.98 0 0 1 .33 1.35Z"/></svg>
+            </span>
+            <span class="tile-text">
+              <span class="tile-label">Spotify</span>
+              <span class="tile-sub">Follow on Spotify</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://music.apple.com/us/song/can-you-feel-this/1877449842" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17.03 3.34a4.95 4.95 0 0 1 1.12-2.34 4.58 4.58 0 0 1 2.16-1 4.46 4.46 0 0 1-1.13 2.28 4.31 4.31 0 0 1-2.15 1.06ZM20.35 17.1c-.39.88-.58 1.27-1.08 2.04-.69 1.08-1.66 2.42-2.86 2.43-1.06.01-1.34-.68-2.78-.67-1.44.01-1.75.68-2.82.67-1.2-.01-2.12-1.22-2.82-2.3-1.97-3.03-2.18-6.59-.96-8.48.87-1.35 2.25-2.15 3.56-2.15 1.34 0 2.19.74 3.3.74 1.07 0 1.72-.74 3.29-.74 1.16 0 2.38.63 3.25 1.72-2.85 1.56-2.39 5.65.92 6.74Z"/></svg>
+            </span>
+            <span class="tile-text">
+              <span class="tile-label">Apple Music</span>
+              <span class="tile-sub">Listen on Apple Music</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://www.deezer.com/us/album/919472181" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 17h3v4H3v-4Zm4-3h3v7H7v-7Zm4-4h3v11h-3V10Zm4-3h3v14h-3V7Zm4-4h2v18h-2V3Z"/></svg>
+            </span>
+            <span class="tile-text">
+              <span class="tile-label">Deezer</span>
+              <span class="tile-sub">Listen on Deezer</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://www.youtube.com/watch?v=E_XkXC9T-tc" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.11-2.12C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.39.58A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.12c1.87.58 9.39.58 9.39.58s7.52 0 9.39-.58a3 3 0 0 0 2.11-2.12A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.75 15.52V8.48L15.96 12l-6.21 3.52Z"/></svg>
+            </span>
+            <span class="tile-text">
+              <span class="tile-label">YouTube</span>
+              <span class="tile-sub">Play the art track</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://soundcloud.com/therealfletcherchristian/can-you-feel-this-f" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9.88 8.18A4.87 4.87 0 0 1 18.8 10a3.3 3.3 0 0 1 1.7 6.14 1.5 1.5 0 0 1-.74.18H4.1A3.1 3.1 0 0 1 3 10.32a3.2 3.2 0 0 1 6.88-2.14Z"/></svg>
+            </span>
+            <span class="tile-text">
+              <span class="tile-label">SoundCloud</span>
+              <span class="tile-sub">Listen on SoundCloud</span>
+            </span>
+          </a>
+
+          <a class="tile" href="./video.html">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v1.76l3.55-2.37A1 1 0 0 1 21 6.22v11.56a1 1 0 0 1-1.45.83L16 16.24V18a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6Z"/></svg>
+            </span>
+            <span class="tile-text">
+              <span class="tile-label">Promo Video</span>
+              <span class="tile-sub">Open the full video page</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="meta-grid">
+          <div class="meta">
+            <p class="meta-label">Release Date</p>
+            <p class="meta-value">2026-03-06</p>
+          </div>
+          <div class="meta">
+            <p class="meta-label">Genre</p>
+            <p class="meta-value">Rock / Blues-Rock</p>
+          </div>
+          <div class="meta">
+            <p class="meta-label">Label</p>
+            <p class="meta-value">Jam Killer Productions LLC</p>
+          </div>
+          <div class="meta">
+            <p class="meta-label">UPC</p>
+            <p class="meta-value">823191558668</p>
+          </div>
+          <div class="meta">
+            <p class="meta-label">ISRC</p>
+            <p class="meta-value">QZTH82500603</p>
+          </div>
+          <div class="meta">
+            <p class="meta-label">Track</p>
+            <p class="meta-value">Can You Feel This?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-body">
+        <div class="section-head">
+          <div>
+            <h2>Share it fast</h2>
+            <p>One tap where supported, and hard links when it isn’t.</p>
+          </div>
+        </div>
+
+        <div class="share-actions">
+          <button class="btn" type="button" id="shareReleaseBtn">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 16a2.98 2.98 0 0 0-2.4 1.2l-6.77-3.38a3.12 3.12 0 0 0 0-1.64l6.77-3.38A3 3 0 1 0 15 7a3.12 3.12 0 0 0 .05.54L8.28 10.9a3 3 0 1 0 0 2.2l6.77 3.36A3 3 0 1 0 18 16Z"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-label">Share Release</span>
+              <span class="btn-sub">Use native share</span>
+            </span>
+          </button>
+
+          <button class="btn" type="button" id="copyReleaseBtn">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1Zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H10V7h9v14Z"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-label">Copy Release Link</span>
+              <span class="btn-sub">Paste it anywhere</span>
+            </span>
+          </button>
+
+          <a class="btn" id="shareOnX" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-7.06L5.86 22H2.74l7.25-8.28L.8 2h6.36l4.43 6.38L18.9 2Z"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-label">Share on X</span>
+              <span class="btn-sub">Post the release page</span>
+            </span>
+          </a>
+
+          <a class="btn" id="shareOnFacebook" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.08c0-.87.25-1.46 1.49-1.46h1.6V4.94c-.28-.04-1.24-.12-2.35-.12-2.33 0-3.93 1.42-3.93 4.04V11H8v3h2.28v8h3.22Z"/></svg>
+            </span>
+            <span class="btn-text">
+              <span class="btn-label">Share on Facebook</span>
+              <span class="btn-sub">Drop the release page</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>Fletcher Christian • A Jam Killer Joint</div>
+      <a href="https://jamkillerproductions.io" target="_blank" rel="noopener noreferrer">jamkillerproductions.io</a>
     </div>
   </main>
 
+  <div class="toast" id="toast">Copied.</div>
+
   <script>
-    // Raw MP4 on IPFS
-    const VIDEO_URL = "https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4";
+    const PAGE_URL = window.location.href;
+    const PAGE_TITLE = "Can You Feel This? — Fletcher Christian";
+    const PAGE_TEXT = "Stream Can You Feel This? by Fletcher Christian and watch the promo video.";
 
-    // Share-optimized page (you will add video.html next to index.html)
-    const VIDEO_SHARE_PAGE = new URL("video.html", window.location.href).toString();
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl) ogUrl.setAttribute("content", PAGE_URL);
 
-    // Spin var drives the subtle edge glow
-    (function spinVar(){
-      const root = document.documentElement;
-      let t = 0;
-      function tick(){
-        t += 0.0011;
-        if(t > 1) t = 0;
-        root.style.setProperty("--spin", t.toFixed(6));
-        requestAnimationFrame(tick);
+    function showToast(message){
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    async function copyText(text, successMessage){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast(successMessage || "Copied.");
+      }catch(err){
+        const input = document.createElement("input");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+        showToast(successMessage || "Copied.");
       }
-      requestAnimationFrame(tick);
-    })();
+    }
 
-    // Cover tilt
-    (function tilt(){
-      const root = document.documentElement;
-      const art = document.getElementById("art");
-      if(!art) return;
-
-      let raf = 0;
-      function onMove(e){
-        const r = art.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width;
-        const y = (e.clientY - r.top) / r.height;
-        const tiltY = (x - 0.5) * 10;
-        const tiltX = (0.5 - y) * 8;
-        const lift  = -2;
-
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          root.style.setProperty("--tiltX", tiltX.toFixed(2) + "deg");
-          root.style.setProperty("--tiltY", tiltY.toFixed(2) + "deg");
-          root.style.setProperty("--lift", lift + "px");
-        });
-      }
-      function onLeave(){
-        root.style.setProperty("--tiltX", "0deg");
-        root.style.setProperty("--tiltY", "0deg");
-        root.style.setProperty("--lift", "0px");
-      }
-
-      art.addEventListener("pointermove", onMove, { passive:true });
-      art.addEventListener("pointerleave", onLeave, { passive:true });
-    })();
-
-    (function sharing(){
-      const note = document.getElementById("shareNote");
-      const openVideoLink = document.getElementById("openVideoLink");
-      const nativeShareVideoBtn = document.getElementById("nativeShareVideoBtn");
-      const copyVideoBtn = document.getElementById("copyVideoBtn");
-      const shareX = document.getElementById("shareX");
-      const shareFB = document.getElementById("shareFB");
-      const sharePageBtnTop = document.getElementById("sharePageBtnTop");
-
-      function toast(msg){
-        if(!note) return;
-        note.textContent = msg;
-        setTimeout(() => note.textContent = "", 1600);
-      }
-
-      // Make "Open Video" open the raw mp4
-      openVideoLink.href = VIDEO_URL;
-
-      // Build one-tap social links using the SHARE PAGE (best preview)
-      const shareText = "Can You Feel This? — Promo Video (Fletcher Christian)";
-      const xUrl = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(shareText) + "&url=" + encodeURIComponent(VIDEO_SHARE_PAGE);
-      const fbUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(VIDEO_SHARE_PAGE);
-
-      shareX.href = xUrl;
-      shareFB.href = fbUrl;
-
-      // Native share: share the SHARE PAGE (not the raw mp4)
-      async function nativeShareVideo(){
+    async function sharePage(){
+      if (navigator.share){
         try{
-          if(navigator.share){
-            await navigator.share({ title: "Can You Feel This? — Promo Video", text: shareText, url: VIDEO_SHARE_PAGE });
-            return;
-          }
-          await navigator.clipboard.writeText(VIDEO_SHARE_PAGE);
-          toast("Video share link copied.");
-        }catch{}
+          await navigator.share({
+            title: PAGE_TITLE,
+            text: PAGE_TEXT,
+            url: PAGE_URL
+          });
+        }catch(err){}
+      }else{
+        await copyText(PAGE_URL, "Release link copied.");
       }
+    }
 
-      async function copyVideoShareLink(){
-        try{
-          await navigator.clipboard.writeText(VIDEO_SHARE_PAGE);
-          toast("Video share link copied.");
-        }catch{}
-      }
+    document.getElementById("sharePageBtn").addEventListener("click", sharePage);
+    document.getElementById("shareReleaseBtn").addEventListener("click", sharePage);
+    document.getElementById("copyPageBtn").addEventListener("click", () => copyText(PAGE_URL, "Release link copied."));
+    document.getElementById("copyReleaseBtn").addEventListener("click", () => copyText(PAGE_URL, "Release link copied."));
 
-      async function nativeSharePage(){
-        const url = window.location.href;
-        try{
-          if(navigator.share){
-            await navigator.share({ title: "Can You Feel This? — Fletcher Christian", url });
-            return;
-          }
-          await navigator.clipboard.writeText(url);
-          toast("Page link copied.");
-        }catch{}
-      }
-
-      nativeShareVideoBtn?.addEventListener("click", nativeShareVideo);
-      copyVideoBtn?.addEventListener("click", copyVideoShareLink);
-      sharePageBtnTop?.addEventListener("click", nativeSharePage);
-    })();
+    const xText = encodeURIComponent("Can You Feel This? — Fletcher Christian");
+    const xUrl = encodeURIComponent(PAGE_URL);
+    document.getElementById("shareOnX").href = `https://twitter.com/intent/tweet?text=${xText}&url=${xUrl}`;
+    document.getElementById("shareOnFacebook").href = `https://www.facebook.com/sharer/sharer.php?u=${xUrl}`;
   </script>
 </body>
 </html>

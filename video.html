@@ -5,105 +5,467 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 
   <title>Can You Feel This? — Promo Video</title>
-  <meta name="description" content="Watch the Can You Feel This? promo video by Fletcher Christian. Dropping everywhere March 6." />
+  <meta name="description" content="Watch the Can You Feel This? promo video by Fletcher Christian and share it anywhere." />
   <meta name="theme-color" content="#07080b" />
 
-  <!-- IMPORTANT: social preview image -->
   <meta property="og:type" content="video.other" />
   <meta property="og:title" content="Can You Feel This? — Promo Video" />
-  <meta property="og:description" content="Watch the promo video. Dropping everywhere March 6." />
+  <meta property="og:description" content="Watch the promo video for Can You Feel This? by Fletcher Christian." />
   <meta property="og:image" content="https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg" />
   <meta property="og:image:alt" content="Can You Feel This? — Fletcher Christian" />
   <meta property="og:site_name" content="Fletcher Christian" />
-
-  <!-- This URL should be the video page itself (platforms use it) -->
   <meta property="og:url" content="" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Can You Feel This? — Promo Video" />
-  <meta name="twitter:description" content="Watch the promo video. Dropping everywhere March 6." />
+  <meta name="twitter:description" content="Watch the promo video for Can You Feel This? by Fletcher Christian." />
   <meta name="twitter:image" content="https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg" />
 
   <style>
-    :root{ --bg:#07080b; --fg:rgba(255,255,255,.92); --stroke:rgba(255,255,255,.12); }
+    :root{
+      --bg:#07080b;
+      --text:rgba(255,255,255,.96);
+      --muted:rgba(255,255,255,.68);
+      --line:rgba(255,255,255,.12);
+      --line-strong:rgba(255,255,255,.22);
+      --card:rgba(11,14,20,.76);
+      --card-2:rgba(255,255,255,.05);
+      --shadow:0 22px 90px rgba(0,0,0,.5);
+    }
+
     *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    html,body{ min-height:100%; }
+    html{ scroll-behavior:smooth; }
+
     body{
       margin:0;
-      background: var(--bg);
-      color: var(--fg);
-      font: 16px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      font:16px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255,255,255,.08), transparent 24%),
+        linear-gradient(180deg, rgba(7,8,11,.88), rgba(7,8,11,1)),
+        var(--bg);
+      padding:20px;
+    }
+
+    .page{
+      width:min(1100px, 100%);
+      margin:0 auto;
       display:grid;
-      place-items:center;
-      padding: 18px;
+      gap:18px;
     }
+
     .card{
-      width:min(980px, 100%);
-      border:1px solid var(--stroke);
-      border-radius: 22px;
-      background: rgba(10,12,18,.55);
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:var(--card);
       overflow:hidden;
-      box-shadow: 0 30px 100px rgba(0,0,0,.55);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(12px);
     }
+
+    .video-shell{
+      position:relative;
+      background:#000;
+    }
+
     .video{
       display:block;
       width:100%;
       height:auto;
       background:#000;
+      aspect-ratio:16/9;
     }
-    .bar{
-      padding: 14px 14px 16px;
+
+    .topbar{
       display:flex;
-      gap: 10px;
       align-items:center;
       justify-content:space-between;
+      gap:12px;
       flex-wrap:wrap;
+      padding:18px 20px 0;
     }
-    .title{
-      margin:0;
-      font-weight: 850;
-      letter-spacing: -0.01em;
-    }
-    .sub{
-      margin: 2px 0 0 0;
-      opacity:.78;
-      font-size: 13px;
-    }
-    .btn{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.06);
-      color: rgba(255,255,255,.92);
-      border-radius: 12px;
-      padding: 10px 12px;
-      text-decoration:none;
-      font-weight: 750;
+
+    .crumb{
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      white-space:nowrap;
+      gap:8px;
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-weight:800;
     }
-    .btn:hover{ border-color: rgba(255,255,255,.28); }
+
+    .content{
+      padding:18px 20px 22px;
+      display:grid;
+      gap:18px;
+    }
+
+    .title{
+      margin:0;
+      font-size:clamp(1.7rem, 4vw, 2.5rem);
+      letter-spacing:-.04em;
+      line-height:.96;
+    }
+
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    .actions,
+    .stream-grid{
+      display:grid;
+      gap:12px;
+      grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    }
+
+    .btn,
+    .tile{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      min-height:62px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.06);
+      text-decoration:none;
+      color:var(--text);
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      backdrop-filter:blur(8px);
+      cursor:pointer;
+    }
+
+    .btn:hover,
+    .tile:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.24);
+      background:rgba(255,255,255,.1);
+    }
+
+    .btn.primary{
+      background:rgba(255,255,255,.96);
+      color:#0b0d11;
+      border-color:rgba(255,255,255,.94);
+      font-weight:900;
+    }
+
+    .icon{
+      width:22px;
+      height:22px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 22px;
+    }
+
+    .icon svg{
+      width:22px;
+      height:22px;
+      fill:currentColor;
+      display:block;
+    }
+
+    .text{
+      display:grid;
+      gap:2px;
+      min-width:0;
+    }
+
+    .label{
+      font-weight:850;
+      letter-spacing:-.02em;
+    }
+
+    .meta{
+      font-size:13px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      border-radius:24px;
+      background:var(--card);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .panel-body{
+      padding:20px;
+    }
+
+    .panel h2{
+      margin:0 0 6px;
+      font-size:1.05rem;
+      letter-spacing:-.02em;
+    }
+
+    .panel p{
+      margin:0 0 14px;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding:6px 2px 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .footer a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .footer a:hover{
+      color:var(--text);
+    }
+
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:22px;
+      transform:translateX(-50%) translateY(18px);
+      background:rgba(10,12,18,.94);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:999px;
+      padding:10px 14px;
+      box-shadow:0 14px 40px rgba(0,0,0,.32);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .2s ease, transform .2s ease;
+      z-index:50;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 640px){
+      body{ padding:14px; }
+      .topbar,
+      .content,
+      .panel-body{ padding-left:16px; padding-right:16px; }
+    }
   </style>
 </head>
 <body>
-  <div class="card">
-    <video class="video" controls playsinline preload="metadata">
-      <source src="https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4" type="video/mp4">
-    </video>
-    <div class="bar">
-      <div>
-        <p class="title">Can You Feel This? — Promo Video</p>
-        <p class="sub">Fletcher Christian • Dropping everywhere March 6</p>
+  <main class="page">
+    <section class="card">
+      <div class="topbar">
+        <div class="crumb">Fletcher Christian • Promo Video</div>
+        <a class="btn" href="./index.html">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M14.71 6.29a1 1 0 0 1 0 1.41L11.41 11H20a1 1 0 1 1 0 2h-8.59l3.3 3.29a1 1 0 1 1-1.42 1.42l-5-5a1 1 0 0 1 0-1.42l5-5a1 1 0 0 1 1.42 0Z"/></svg>
+          </span>
+          <span class="text">
+            <span class="label">Back to Release</span>
+            <span class="meta">Return to the main page</span>
+          </span>
+        </a>
       </div>
-      <a class="btn" href="./index.html">Back to the release page →</a>
+
+      <div class="video-shell">
+        <video class="video" controls playsinline preload="metadata" poster="https://bafybeifhvxoj5gkqiuf4cqtygkvzy7dk7eedy6p4fjai26zxsczlsl4f54.ipfs.dweb.link?filename=socialshare.jpeg">
+          <source src="https://bafybeid7y2rqqfwnv25lq6xi2zyd3cps3hyjy4mznmt3o2p4b7qochwo2y.ipfs.dweb.link?filename=Can%20You%20Feel%20This(1).mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <div class="content">
+        <div>
+          <h1 class="title">Can You Feel This? — Promo Video</h1>
+          <p class="sub">Watch it, share it, and move people straight to the release page without any extra bullshit.</p>
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" type="button" id="shareVideoBtn">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18 16a2.98 2.98 0 0 0-2.4 1.2l-6.77-3.38a3.12 3.12 0 0 0 0-1.64l6.77-3.38A3 3 0 1 0 15 7a3.12 3.12 0 0 0 .05.54L8.28 10.9a3 3 0 1 0 0 2.2l6.77 3.36A3 3 0 1 0 18 16Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Share Video</span>
+              <span class="meta">Native share where supported</span>
+            </span>
+          </button>
+
+          <button class="btn" type="button" id="copyVideoBtn">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 1H6a2 2 0 0 0-2 2v12h2V3h10V1Zm3 4H10a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Zm0 16H10V7h9v14Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Copy Video Link</span>
+              <span class="meta">Paste it anywhere</span>
+            </span>
+          </button>
+
+          <a class="btn" id="shareVideoX" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.77 7.73L23.2 22h-6.25l-4.9-7.06L5.86 22H2.74l7.25-8.28L.8 2h6.36l4.43 6.38L18.9 2Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Share on X</span>
+              <span class="meta">Post the video page</span>
+            </span>
+          </a>
+
+          <a class="btn" id="shareVideoFacebook" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.08c0-.87.25-1.46 1.49-1.46h1.6V4.94c-.28-.04-1.24-.12-2.35-.12-2.33 0-3.93 1.42-3.93 4.04V11H8v3h2.28v8h3.22Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Share on Facebook</span>
+              <span class="meta">Drop the video page</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-body">
+        <h2>Stream the track</h2>
+        <p>The video points back to the release page, but the platforms are here too so nobody gets lost.</p>
+
+        <div class="stream-grid">
+          <a class="tile" href="https://open.spotify.com/artist/2FjdpboVDGnJs9wuGcJV8H" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 1.5A10.5 10.5 0 1 0 22.5 12 10.51 10.51 0 0 0 12 1.5Zm4.82 15.14a.66.66 0 0 1-.91.22c-2.5-1.53-5.65-1.88-9.35-1.04a.66.66 0 1 1-.29-1.28c4.05-.92 7.54-.51 10.33 1.2a.66.66 0 0 1 .22.9Zm1.29-2.87a.82.82 0 0 1-1.13.27c-2.86-1.76-7.21-2.27-10.59-1.22a.82.82 0 1 1-.49-1.57c3.85-1.2 8.65-.62 11.94 1.4a.82.82 0 0 1 .27 1.12Zm.11-3a.98.98 0 0 1-1.35.32c-3.27-2-8.67-2.18-11.79-1.2a.98.98 0 0 1-.59-1.87c3.58-1.13 9.52-.91 13.4 1.46a.98.98 0 0 1 .33 1.35Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Spotify</span>
+              <span class="meta">Follow on Spotify</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://music.apple.com/us/song/can-you-feel-this/1877449842" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M17.03 3.34a4.95 4.95 0 0 1 1.12-2.34 4.58 4.58 0 0 1 2.16-1 4.46 4.46 0 0 1-1.13 2.28 4.31 4.31 0 0 1-2.15 1.06ZM20.35 17.1c-.39.88-.58 1.27-1.08 2.04-.69 1.08-1.66 2.42-2.86 2.43-1.06.01-1.34-.68-2.78-.67-1.44.01-1.75.68-2.82.67-1.2-.01-2.12-1.22-2.82-2.3-1.97-3.03-2.18-6.59-.96-8.48.87-1.35 2.25-2.15 3.56-2.15 1.34 0 2.19.74 3.3.74 1.07 0 1.72-.74 3.29-.74 1.16 0 2.38.63 3.25 1.72-2.85 1.56-2.39 5.65.92 6.74Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Apple Music</span>
+              <span class="meta">Listen on Apple Music</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://www.deezer.com/us/album/919472181" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 17h3v4H3v-4Zm4-3h3v7H7v-7Zm4-4h3v11h-3V10Zm4-3h3v14h-3V7Zm4-4h2v18h-2V3Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Deezer</span>
+              <span class="meta">Listen on Deezer</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://www.youtube.com/watch?v=E_XkXC9T-tc" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.11-2.12C19.52 3.5 12 3.5 12 3.5s-7.52 0-9.39.58A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.11 2.12c1.87.58 9.39.58 9.39.58s7.52 0 9.39-.58a3 3 0 0 0 2.11-2.12A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.75 15.52V8.48L15.96 12l-6.21 3.52Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">YouTube</span>
+              <span class="meta">Play the art track</span>
+            </span>
+          </a>
+
+          <a class="tile" href="https://soundcloud.com/therealfletcherchristian/can-you-feel-this-f" target="_blank" rel="noopener noreferrer">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9.88 8.18A4.87 4.87 0 0 1 18.8 10a3.3 3.3 0 0 1 1.7 6.14 1.5 1.5 0 0 1-.74.18H4.1A3.1 3.1 0 0 1 3 10.32a3.2 3.2 0 0 1 6.88-2.14Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">SoundCloud</span>
+              <span class="meta">Listen on SoundCloud</span>
+            </span>
+          </a>
+
+          <a class="tile" href="./index.html">
+            <span class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v3h-2V5H5v14h14v-3h2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5Zm11.29 3.29a1 1 0 0 1 1.42 0l3.99 4a1 1 0 0 1 0 1.42l-3.99 4a1 1 0 0 1-1.42-1.42L16.59 13H8a1 1 0 1 1 0-2h8.59l-2.3-2.29a1 1 0 0 1 0-1.42Z"/></svg>
+            </span>
+            <span class="text">
+              <span class="label">Release Page</span>
+              <span class="meta">Back to the main hub</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      <div>Fletcher Christian • A Jam Killer Joint</div>
+      <a href="https://jamkillerproductions.io" target="_blank" rel="noopener noreferrer">jamkillerproductions.io</a>
     </div>
-  </div>
+  </main>
+
+  <div class="toast" id="toast">Copied.</div>
 
   <script>
-    // Populate og:url dynamically so previews have a canonical URL
+    const VIDEO_URL = window.location.href;
+    const VIDEO_TITLE = "Can You Feel This? — Promo Video";
+    const VIDEO_TEXT = "Watch the promo video for Can You Feel This? by Fletcher Christian.";
+
     const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute("content", window.location.href);
+    if (ogUrl) ogUrl.setAttribute("content", VIDEO_URL);
+
+    function showToast(message){
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
+    }
+
+    async function copyText(text, successMessage){
+      try{
+        await navigator.clipboard.writeText(text);
+        showToast(successMessage || "Copied.");
+      }catch(err){
+        const input = document.createElement("input");
+        input.value = text;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+        showToast(successMessage || "Copied.");
+      }
+    }
+
+    async function shareVideo(){
+      if (navigator.share){
+        try{
+          await navigator.share({
+            title: VIDEO_TITLE,
+            text: VIDEO_TEXT,
+            url: VIDEO_URL
+          });
+        }catch(err){}
+      }else{
+        await copyText(VIDEO_URL, "Video link copied.");
+      }
+    }
+
+    document.getElementById("shareVideoBtn").addEventListener("click", shareVideo);
+    document.getElementById("copyVideoBtn").addEventListener("click", () => copyText(VIDEO_URL, "Video link copied."));
+
+    const xText = encodeURIComponent("Can You Feel This? — Promo Video");
+    const xUrl = encodeURIComponent(VIDEO_URL);
+    document.getElementById("shareVideoX").href = `https://twitter.com/intent/tweet?text=${xText}&url=${xUrl}`;
+    document.getElementById("shareVideoFacebook").href = `https://www.facebook.com/sharer/sharer.php?u=${xUrl}`;
   </script>
 </body>
 </html>
